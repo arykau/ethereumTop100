@@ -1,0 +1,3 @@
+Visualize top 100 Ethereum addresses by ETH Balance
+You need to show in the browser various charts
+Display in the browser 3 types of charts: Pie Chart, Bar Chart and Linear Chart
