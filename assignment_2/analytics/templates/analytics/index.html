@@ -1,0 +1,149 @@
+{% extends 'additional/base.html' %}
+{% block content %}
+
+<nav>
+    <div class="nav nav-pills justify-content-center" id="nav-tab" role="tablist">
+        <button class="nav-link active" id="nav-bar-chart" data-bs-toggle="tab" data-bs-target="#nav-barChart" type="button"
+            role="tab" aria-controls="nav-barChart" aria-selected="true">Bar chart</button>
+        <button class="nav-link" id="nav-pie-chart" data-bs-toggle="tab" data-bs-target="#nav-pieChart" type="button"
+            role="tab" aria-controls="nav-pieChart" aria-selected="false">Pie chart</button>
+        <button class="nav-link" id="nav-line-chart" data-bs-toggle="tab" data-bs-target="#nav-lineChart" type="button"
+            role="tab" aria-controls="nav-lineChart" aria-selected="false">Linear chart</button>
+    </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+    <br>
+    <div class="tab-pane fade show active" id="nav-barChart" role="tabpanel" aria-labelledby="nav-bar-chart">
+        <canvas id="barChart" height="100%"></canvas>
+        <script>
+            var ctx = document.getElementById('barChart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: [{% for i in dicts %}  '{{ i.account }}',  {% endfor %}],
+            datasets: [{
+                label: ' Ether',
+                data: [{% for i in dicts %}  {{ i.balance }}, {% endfor %}],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.8)',
+                    'rgba(54, 162, 235, 0.8)',
+                    'rgba(255, 206, 86, 0.8)',
+                    'rgba(75, 192, 192, 0.8)',
+                    'rgba(153, 102, 255, 0.8)',
+                    'rgba(255, 159, 64, 0.8)',
+                    'rgba(240, 120, 50, 0.8)',
+                ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(240, 120, 50, 1)',
+
+                    ],
+                        borderWidth: 2
+                                        }]
+                                    },
+            options: {
+                
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+                                });
+        </script>
+    </div>
+    <div class="tab-pane fade" id="nav-pieChart" role="tabpanel" aria-labelledby="nav-pie-chart">
+        <canvas id="pieChart" height="100%"></canvas>
+        <script>
+            var ctx = document.getElementById('pieChart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: [{% for i in dicts %}  '{{ i.account }}',  {% endfor %}],
+            datasets: [{
+                label: ' Ether',
+                data: [{% for i in dicts %}  {{ i.balance }}, {% endfor %}],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.8)',
+                    'rgba(54, 162, 235, 0.8)',
+                    'rgba(255, 206, 86, 0.8)',
+                    'rgba(75, 192, 192, 0.8)',
+                    'rgba(153, 102, 255, 0.8)',
+                    'rgba(255, 159, 64, 0.8)',
+                    'rgba(240, 120, 50, 0.8)',
+                ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(240, 120, 50, 1)',
+
+                    ],
+                        borderWidth: 1
+                                                }]
+                                            },
+            options: {
+                radius: 250,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                    }
+                }
+            }
+                                        });
+        </script>
+    </div>
+    <div class="tab-pane fade" id="nav-lineChart" role="tabpanel" aria-labelledby="nav-line-chart">
+        <canvas id="myChart" height="100%"></canvas>
+        <script>
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: [{% for i in dicts %}  '{{ i.account }}',  {% endfor %}],
+            datasets: [{
+                label: '# Ether',
+                data: [{% for i in dicts %}  {{ i.balance }}, {% endfor %}],
+                backgroundColor: [
+                            'rgba(255, 99, 132, 0.8)',
+                            'rgba(54, 162, 235, 0.8)',
+                            'rgba(255, 206, 86, 0.8)',
+                            'rgba(75, 192, 192, 0.8)',
+                            'rgba(153, 102, 255, 0.8)',
+                            'rgba(255, 159, 64, 0.8)',
+                            'rgba(240, 120, 50, 0.8)',
+                        ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)',
+                                'rgba(240, 120, 50, 1)',
+
+                            ],
+                                borderWidth: 2
+                                                }]
+                                            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+                                        });
+        </script>
+    </div>
+</div>
+
+{% endblock %}
